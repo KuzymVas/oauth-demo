@@ -180,6 +180,31 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Login as USER via Github ( copy to browser )",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/github/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"github",
+								"login"
+							]
+						},
+						"description": "Since this way of login requires to interact with Github web page, you would not be able to continue on Postman ( as it does not load JS necessary for that).\n\nInstead copy this URL to browser, pass through Github authorization flow (it needed to be only once as long as you stay logged in on Github) and you would be presented with the token value.\n\nCopy it and use \"Quick environment view\" in Postman (right sidebar, top icon) to edit Global variables. Find one named \\`jwtToken\\` and insert token value from the browser into it. After that you should be able to perform requests as USER."
+					},
+					"response": []
 				}
 			]
 		},
@@ -219,8 +244,31 @@
 				{
 					"name": "403 at GET admin resource",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/admin/demo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"demo"
+							]
+						}
 					},
 					"response": []
 				},
@@ -270,7 +318,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/demo",
+							"raw": "http://localhost:8080/api/admin/demo",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -278,6 +326,7 @@
 							"port": "8080",
 							"path": [
 								"api",
+								"admin",
 								"demo"
 							]
 						}
@@ -322,8 +371,31 @@
 				{
 					"name": "Succeed at GET admin resource",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwtToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/admin/demo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"demo"
+							]
+						}
 					},
 					"response": []
 				},
