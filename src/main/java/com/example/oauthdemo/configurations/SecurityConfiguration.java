@@ -36,13 +36,28 @@ public class SecurityConfiguration {
         return http.build();
     }
 
+    @Bean
+    @Order(2)
+    public SecurityFilterChain githubOAuth2SecurityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .securityMatcher("/api/github/login", "/oauth2/**", "/login/oauth2/code/**")
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(authorizeRequests ->
+                        authorizeRequests
+                                .anyRequest().authenticated()
+                )
+                .oauth2Login(Customizer.withDefaults());
+
+        return http.build();
+    }
+
     /**
      * Security chain for access without authentication
      * Checks for match second (due to @Order) and matches all endpoints under /unsecured/**
      * Lets through everyone (but still logs access and can run custom filters, for monitoring, etc as parts of this chain)
      */
     @Bean
-    @Order(2)
+    @Order(3)
     public SecurityFilterChain permitAllSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .securityMatcher("/unsecured/**")
@@ -58,7 +73,7 @@ public class SecurityConfiguration {
      * Lets through users based on their ROLE and HTTP request type and endpoint
      */
     @Bean
-    @Order(3)
+    @Order(4)
     public SecurityFilterChain jwtSecurityFilterChain(HttpSecurity http, JwtDecoder jwtDecoder, JwtAuthenticationConverter converter) throws Exception {
         http
                 .securityMatcher("/api/**")
