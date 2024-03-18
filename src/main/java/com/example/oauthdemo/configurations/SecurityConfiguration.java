@@ -59,7 +59,7 @@ public class SecurityConfiguration {
      */
     @Bean
     @Order(3)
-    public SecurityFilterChain jwtSecurityFilterChain(HttpSecurity http, JwtDecoder jwtDecoder) throws Exception {
+    public SecurityFilterChain jwtSecurityFilterChain(HttpSecurity http, JwtDecoder jwtDecoder, JwtAuthenticationConverter converter) throws Exception {
         http
                 .securityMatcher("/api/**")
                 .csrf(AbstractHttpConfigurer::disable)
@@ -71,7 +71,7 @@ public class SecurityConfiguration {
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt
                                 .decoder(jwtDecoder)
-                                .jwtAuthenticationConverter(converter())
+                                .jwtAuthenticationConverter(converter)
                         )
                 );
         return http.build();
