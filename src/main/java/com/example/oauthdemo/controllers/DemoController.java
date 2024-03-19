@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Controller for non-admin endpoints. Still only ADMIN role can do POST requests even to those endpoints
+ */
 @RestController()
 @RequestMapping("/api")
 public class DemoController {

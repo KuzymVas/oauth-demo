@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "32169f37-2bf8-4925-b1f3-df28197f91ef",
 		"name": "OAuth Demo",
+		"description": "This collection covers all possible scenarios for the demo: both succesfull and failing flows.\n\nYou can perform `Without authentication` requests any time and they should succeed, if application is running.\n\nWithout prior login, requests in `Users` and `Admins` would fail with 401.\n\nAfter login they as corresponding role, they would end according to their description (success or 403)\n\nLogin requests are described individually.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "13710393"
 	},
@@ -55,7 +56,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Here are requests for unsecured endpoints. Those should suceed without any pre-requisites."
 		},
 		{
 			"name": "Login",
@@ -105,7 +107,8 @@
 								"api",
 								"login"
 							]
-						}
+						},
+						"description": "HTTP Basic login as USER. Always succeeds (as username and password are pre-configured). Return JWT, which is saved by Postman script in `Tests` section to be used by other requests."
 					},
 					"response": []
 				},
@@ -154,7 +157,8 @@
 								"api",
 								"login"
 							]
-						}
+						},
+						"description": "HTTP Basic login as ADMIN. Always succeeds (as username and password are pre-configured). Return JWT, which is saved by Postman script in `Tests` section to be used by other requests."
 					},
 					"response": []
 				},
@@ -177,7 +181,8 @@
 								"api",
 								"login"
 							]
-						}
+						},
+						"description": "HTTP Basic login without proper credentials. Should always fail with 401."
 					},
 					"response": []
 				},
@@ -206,7 +211,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Here are requests, that would return an internally JWT on login."
 		},
 		{
 			"name": "Users",
@@ -333,7 +339,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Requests for USER role\n\nWithout prior login would fail with 401.\n\nAfter login as USER, they would end according to their description (success or 403)"
 		},
 		{
 			"name": "Admins",
@@ -430,7 +437,7 @@
 					"response": []
 				},
 				{
-					"name": "403 at POST admin resource Copy",
+					"name": "Succeed at POST admin resource",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -459,7 +466,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"description": "Requests for ADMIN role\n\nWithout prior login would fail with 401.\n\nAfter login as ADMIN, they would end with successful response."
 		}
 	]
 }

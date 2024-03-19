@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Controller for endpoints accessible only to ADMIN role
+ */
 @RestController()
 @RequestMapping("/api/admin")
 public class AdminController {

@@ -12,9 +12,15 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This service is minimalistic implementation of JWT-related functionality based on
+ * io.jsonwebtoken libraries.
+ * This service is not in focus of the demo, contains multiple shortcuts and vulnerabilities and should not be used as example
+ */
 @Service
 public class JwtService {
 
+    // Key is store in sources: critically unsafe.
     public static final String SECRET = "357638792F423F4428472B4B6250655368566D597133743677397A2443264629";
 
     public JwtParser getTokenParser() {

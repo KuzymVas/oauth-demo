@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Contains logic for login endpoints, returning JWT for authenticated users
+ */
 @RestController()
 @RequestMapping("/api")
 public class LoginController {
@@ -29,6 +32,9 @@ public class LoginController {
         return new JwtResponse(jwt);
     }
 
+    /**
+     * Github login uses same username for all users in JWT
+     */
     @GetMapping("/github/login")
     public JwtResponse githubLogin() {
         String jwt = jwtService.generateToken(githubUserService.getDefaultGithubUsername());

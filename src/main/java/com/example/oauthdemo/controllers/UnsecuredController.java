@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Controller for freely available endpoints. Allows both GET and POST requests
+ */
 @RestController()
 @RequestMapping("/unsecured")
 public class UnsecuredController {

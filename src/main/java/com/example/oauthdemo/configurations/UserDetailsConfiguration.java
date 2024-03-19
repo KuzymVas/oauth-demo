@@ -6,6 +6,11 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+/**
+ * Since we use user details service in our JWT converter, it need to be in separate configuration to avoid
+ * circular dependency problem.
+ * (Otherwise we would have: bean in configuration (filter chain) relying on component (converter), which relies on the bean from that same configuration(user details service))
+ */
 @Configuration
 public class UserDetailsConfiguration {
 

@@ -10,6 +10,17 @@ import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 
+/**
+ * This class provides implementation of Spring Security interface for JWT decoding
+ * with the help of io.jsonwebtoken.
+ * You would need to implement similar class in  cases like those:
+ * - You want to use non-standard JWT library
+ * - You need to decode multiple types of JWTs with the same library (i. e. they obtain keys in different ways,
+ *   or one of them should invoke additional logic during decoding, etc)
+ *
+ *   On pattern level this class is an adapter between JWT library and Spring Security.
+ *   Try to provide proper exception handling and conversion to avoid leaking JWT library logic into Spring Security.
+ */
 @Component
 public class CustomJwtDecoder implements JwtDecoder {
 
